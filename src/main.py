@@ -2,6 +2,7 @@ import argparse
 from tabulate import tabulate
 
 from platforms.code4rena import Code4rena
+from platforms.sherlock import Sherlock
 
 parser = argparse.ArgumentParser(
     description='Three-bladed weapon of the night elf Sentinels.')
@@ -11,12 +12,10 @@ parser.add_argument('--upcoming', help='Upcoming audit contests',
                     action=argparse.BooleanOptionalAction)
 args = parser.parse_args()
 
-code4rena = Code4rena()
-
 contests = filter(
     lambda contest: contest['active'] or contest['upcoming'] if
     args.active or args.upcoming else True,
-    code4rena.get()
+    Code4rena().get() + Sherlock().get()
 )
 
 
