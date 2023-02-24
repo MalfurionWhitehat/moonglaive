@@ -19,8 +19,15 @@ contests = filter(
 )
 
 
-header = ['title', 'start_time', 'end_time', 'eta']
-rows = [[contest['title'], contest['start_time'],
-         contest['end_time'], contest['eta']] for contest in contests]
+header = ['platform', 'title', 'eta', 'reward']
+rows = [
+    [contest['platform'],
+     contest['title'],
+     contest['eta'],
+     contest['reward']]
+    for contest in contests]
 
-print(tabulate(rows, header, tablefmt='grid'))
+print(tabulate(rows,
+               header,
+               tablefmt='grid',
+               colalign=['left', 'left', 'right', 'right']))

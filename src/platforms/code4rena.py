@@ -1,11 +1,15 @@
 import requests
 from dateutil import parser as date
-from datetime import datetime
+from re import sub
+from decimal import Decimal
 
 
-class Code4rena():
+from platforms.base import Base
+
+
+class Code4rena(Base):
     def __init__(self):
-        pass
+        super().__init__()
 
     def get(self):
         response = requests.get(
@@ -14,31 +18,16 @@ class Code4rena():
         contests = list(
             map(lambda contest:
                 dict(contest,
-                     **{'eta': "{:.0f}".format((date.parse(contest['end_time'])
-                                                    .timestamp() -
-                                                datetime.now()
-                                                    .timestamp())/60/60//24) + '-'
-                        if contest['active'] else
-                        "{:.0f}".format((date.parse(contest['start_time'])
-                                             .timestamp() -
-                                         datetime.now()
-                                             .timestamp())/60/60//24) + '+'
-                        if contest['upcoming'] else ''
-                        }),
-                map(lambda contest:
-                    dict(contest,
-                         **{'active': date.parse(contest['end_time']).timestamp() >
-                            datetime.now().timestamp() and
-                            date.parse(contest['start_time']).timestamp() <
-                            datetime.now().timestamp(),
-                            'upcoming': date.parse(contest['end_time']).timestamp() >
-                            datetime.now().timestamp() and
-                            date.parse(contest['start_time']).timestamp() >
-                            datetime.now().timestamp(),
-                            }),
-                    map(lambda edge: edge['node'], body['result']
-                        ['data']['contests']['edges'])
-                    )
+                     **{
+                         'start_timestamp':  date.parse(contest['start_time']).
+                         timestamp(),
+                         'end_timestamp':  date.parse(contest['end_time']).
+                         timestamp(),
+                         'reward':  Decimal(sub(r'[^\d.]', '', contest['amount'])),
+                         'platform': 'Code4rena'
+                     }),
+                map(lambda edge: edge['node'], body['result']
+                    ['data']['contests']['edges'])
                 )
         )
-        return contests
+        return self.transform(contests)
