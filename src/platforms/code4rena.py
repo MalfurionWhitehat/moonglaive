@@ -8,6 +8,8 @@ from platforms.base import Base
 
 
 class Code4rena(Base):
+    discord_guild_id = '810916927919620096'
+
     def __init__(self):
         super().__init__()
 

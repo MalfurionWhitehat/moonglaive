@@ -5,6 +5,8 @@ from platforms.base import Base
 
 
 class Sherlock(Base):
+    discord_guild_id = '812037309376495636'
+
     def __init__(self):
         super().__init__()
 

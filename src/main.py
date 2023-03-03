@@ -1,8 +1,10 @@
 import argparse
+import os
 from tabulate import tabulate
 
 from platforms.code4rena import Code4rena
 from platforms.sherlock import Sherlock
+from services.discord import Discord
 
 parser = argparse.ArgumentParser(
     description='Three-bladed weapon of the night elf Sentinels.')
@@ -17,6 +19,10 @@ contests = filter(
     args.active or args.upcoming else True,
     Code4rena().get() + Sherlock().get()
 )
+
+
+# print(Discord(os.environ['AUTHORIZATION']).get_users_count_from_messages(
+#     'XX'))
 
 
 header = ['platform', 'title', 'eta', 'reward']
