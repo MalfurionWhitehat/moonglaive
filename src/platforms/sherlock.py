@@ -1,5 +1,5 @@
+from typing import Dict, List
 import requests
-from datetime import datetime
 
 from platforms.base import Base
 
@@ -10,7 +10,7 @@ class Sherlock(Base):
     def __init__(self):
         super().__init__()
 
-    def get(self):
+    def get_contests(self, filters: List[str]) -> List[Dict]:
         response = requests.get(
             url="https://mainnet-contest.sherlock.xyz/contests")
         body = response.json()
@@ -26,4 +26,4 @@ class Sherlock(Base):
                 body
                 )
         )
-        return self.transform(contests)
+        return self.transform(contests, filters)

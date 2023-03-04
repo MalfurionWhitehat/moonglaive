@@ -1,3 +1,4 @@
+from typing import Dict, List
 import requests
 from dateutil import parser as date
 from re import sub
@@ -13,7 +14,7 @@ class Code4rena(Base):
     def __init__(self):
         super().__init__()
 
-    def get(self):
+    def get_contests(self, filters: List[str]) -> List[Dict]:
         response = requests.get(
             url="https://code4rena.com/page-data/index/page-data.json")
         body = response.json()
@@ -32,4 +33,4 @@ class Code4rena(Base):
                     ['data']['contests']['edges'])
                 )
         )
-        return self.transform(contests)
+        return self.transform(contests, filters)

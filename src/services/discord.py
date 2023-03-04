@@ -5,6 +5,7 @@ import requests
 class Channel:
     id: str
     name: str
+    users: int
 
 
 class User:
@@ -44,10 +45,13 @@ class Discord():
         body = response.json()
         return body
 
-    def get_users_count_from_messages(self, channel_id: str) -> int:
+    def get_users_count_from_messages(self, channel_id: str) -> str:
         messages = self.get_messages(channel_id)
-        users_list = list(map(
-            lambda message: message['author']['username'] +
-            message['author']['discriminator'], messages))
-        counts = {user: users_list.count(user) for user in users_list}
-        return len(counts)
+        if type(messages) is list:
+            users_list = list(map(
+                lambda message: message['author']['username'] +
+                message['author']['discriminator'], messages))
+            counts = {user: users_list.count(user) for user in users_list}
+            return str(len(counts))
+        else:
+            return ''
