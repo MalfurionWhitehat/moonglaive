@@ -13,7 +13,7 @@ class Base():
     channels = []
 
     def __init__(self):
-        if 'DISCORD_AUTHORIZATION' in os.environ:
+        if os.getenv('DISCORD_AUTHORIZATION'):
             self.discord = Discord(os.environ['DISCORD_AUTHORIZATION'])
             self.channels = self.discord.get_channels(self.discord_guild_id)
 
