@@ -11,8 +11,8 @@ from platforms.base import Base
 class Code4rena(Base):
     discord_guild_id = '810916927919620096'
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, discord_authorization: str):
+        super().__init__(discord_authorization)
 
     def get_contests(self, filters: List[str]) -> List[Dict]:
         response = requests.get(

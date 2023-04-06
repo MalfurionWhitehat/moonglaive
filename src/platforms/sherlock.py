@@ -7,8 +7,8 @@ from platforms.base import Base
 class Sherlock(Base):
     discord_guild_id = '812037309376495636'
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, discord_authorization: str):
+        super().__init__(discord_authorization)
 
     def get_contests(self, filters: List[str]) -> List[Dict]:
         response = requests.get(

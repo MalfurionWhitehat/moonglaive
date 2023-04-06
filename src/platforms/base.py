@@ -1,4 +1,3 @@
-import os
 import re
 from typing import Dict
 from datetime import datetime
@@ -12,9 +11,9 @@ class Base():
     discord = None
     channels = []
 
-    def __init__(self):
-        if os.getenv('DISCORD_AUTHORIZATION'):
-            self.discord = Discord(os.environ['DISCORD_AUTHORIZATION'])
+    def __init__(self, discord_authorization: str):
+        if discord_authorization:
+            self.discord = Discord(discord_authorization)
             self.channels = self.discord.get_channels(self.discord_guild_id)
 
     def transform(self, contests, filters):
