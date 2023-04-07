@@ -34,8 +34,11 @@ class Base():
                         'channel': self.get_discord_channel(contest)
                         }),
                 filter(
-                    lambda contest: contest['active'] or contest['upcoming']
-                    if 'active' in filters or 'upcoming' in filters else True,
+                    lambda contest: (contest['active'] and 'active'
+                                     in filters or
+                                     contest['upcoming'] and 'upcoming'
+                                     in filters) if
+                    (contest['active'] or contest['upcoming']) else False,
                     map(lambda contest:
                         dict(contest,
                              **{'active': contest['end_timestamp'] >
