@@ -1,14 +1,14 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='moonglaive',
-    version='0.0.1',
+    version='0.0.6',
     description='Three-bladed weapon of the night elf Sentinels',
     url='https://github.com/MalfurionWhitehat/moonglaive',
     author='MalfurionWhitehat',
     author_email='MalfurionWhitehat@proton.me',
     license='MIT',
-    packages=['moonglaive'],
+    packages=find_packages(),
     install_requires=[
         'typing',
         'datetime',
