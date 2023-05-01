@@ -1,7 +1,7 @@
 from typing import Dict, List
 import requests
 
-from .base import Base
+from moonglaive.platforms.base import Base
 
 
 class Sherlock(Base):

@@ -4,7 +4,7 @@ from dateutil import parser as date
 from re import sub
 from decimal import Decimal
 
-from .base import Base
+from moonglaive.platforms.base import Base
 
 
 class Code4rena(Base):

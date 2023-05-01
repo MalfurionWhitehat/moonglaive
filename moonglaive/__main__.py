@@ -3,8 +3,8 @@
 import argparse
 from tabulate import tabulate
 
-from platforms.code4rena import Code4rena
-from platforms.sherlock import Sherlock
+from moonglaive.platforms.code4rena import Code4rena
+from moonglaive.platforms.sherlock import Sherlock
 
 parser = argparse.ArgumentParser(
     description='Three-bladed weapon of the night elf Sentinels.')

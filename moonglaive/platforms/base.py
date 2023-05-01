@@ -3,7 +3,7 @@ from typing import Dict
 from datetime import datetime
 from fuzzywuzzy import fuzz
 
-from services.discord import Channel, Discord
+from moonglaive.services.discord import Channel, Discord
 
 
 class Base():
