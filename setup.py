@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='moonglaive',
-    version='0.0.6',
+    version='0.0.8',
     description='Three-bladed weapon of the night elf Sentinels',
     url='https://github.com/MalfurionWhitehat/moonglaive',
     author='MalfurionWhitehat',

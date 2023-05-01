@@ -30,3 +30,11 @@ python3 -m moonglaive --active --upcoming
 ```
 
 Negative ETA means "days remaining", while Positive ETA menas "days to start"
+
+### Publishing
+
+```
+# update setup.py version
+python3 setup.py sdist
+python3 -m twine upload dist/*
+```
